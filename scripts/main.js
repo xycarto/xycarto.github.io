@@ -67,14 +67,10 @@ var map = new L.Map('map', {
 //build map
 //map.addLayer(topoMap);
 
-var zoomcontrol = new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
-
 var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
 
 //set opening view
 map.setView([-41.29, 175.4], 3);
-
-map.addControl(new L.Control.Permalink({ text: 'Permalink', layers: layers }));
 
 
 
