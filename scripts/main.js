@@ -34,7 +34,7 @@ var aerialElev_urlTemplate =
 var settings = {
   tms: true,
   minZoom: 3,
-  maxZoom: 14,
+  maxZoom: 7,
   continuousWorld: true,
   attribution:
     '<a href="http://www.linz.govt.nz">Data sourced from LINZ. CC-BY 4.0</a>' //Simple attribution for linz
