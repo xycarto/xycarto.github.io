@@ -26,10 +26,6 @@ var crs = new L.Proj.CRS(
   }
 );
 
-//set basemap url
-var topoMap_urlTemplate =
-  "https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
-
 //set additonal perimeters
 var settings = {
   tms: true,
@@ -40,19 +36,41 @@ var settings = {
     '<a href="http://www.linz.govt.nz">Data sourced from LINZ. CC-BY 4.0</a>' //Simple attribution for linz
 };
 
+//set basemap url
+var topoMap_urlTemplate = l.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings);
+
+var colourMap_urlTemplate = l.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
+
+var baseMap = {
+	"ColourMap": colourMap_urlTemplate
+};
+
+var overlayMaps = {
+    "</span><span>Colour Base Map</span>": colourMap_urlTemplate,
+    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
+};
+
+
 //set map and projection
 var map = new L.Map("map", {
-  crs: crs,
-  continuousWorld: true,
-  worldCopyJump: false,
-  zoomControl: false
+    crs: crs,
+    continuousWorld: true,
+    worldCopyJump: false,
+    zoomControl: false,
+    maxZoom: 3,
+    minZoom: 7,
+    layers: [colourMap_urlTemplate]
 });
 
 //set
-var topoMap = new L.TileLayer(topoMap_urlTemplate, settings);
+//var topoMap = new L.TileLayer(topoMap_urlTemplate, settings);
 
 //build map
-map.addLayer(topoMap);
+//map.addLayer(topoMap);
+
+var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
+
+map.addControl(new L.Control.Permalink({ text: 'Permalink', layers: layers }));
 
 //set opening view
 map.setView([-41.29, 175.4], 3);
