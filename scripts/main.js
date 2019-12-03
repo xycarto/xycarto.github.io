@@ -27,7 +27,7 @@ var crs = new L.Proj.CRS(
 );
 
 //set basemap url
-var aerialElev_urlTemplate =
+var topoMap_urlTemplate =
   "https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
 
 //set additonal perimeters
@@ -49,10 +49,10 @@ var map = new L.Map("map", {
 });
 
 //set
-var aerialElev = new L.TileLayer(aerialElev_urlTemplate, settings);
+var topoMap = new L.TileLayer(topoMap_urlTemplate, settings);
 
 //build map
-map.addLayer(aerialElev);
+map.addLayer(topoMap);
 
 //set opening view
 map.setView([-41.29, 175.4], 3);
