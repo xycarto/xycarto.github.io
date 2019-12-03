@@ -33,6 +33,7 @@ var aerialElev_urlTemplate =
 //set additonal perimeters
 var settings = {
   tms: true,
+  minZoom: 3,
   maxZoom: 14,
   continuousWorld: true,
   attribution:
