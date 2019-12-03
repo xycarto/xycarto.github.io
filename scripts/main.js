@@ -56,8 +56,8 @@ var map = new L.Map('map', {
     continuousWorld: true,
     worldCopyJump: false,
     zoomControl: false,
-    maxZoom: 3,
-    minZoom: 7,
+    maxZoom: 7,
+    minZoom: 3,
     layers: [colourMap_urlTemplate]
 });
 
