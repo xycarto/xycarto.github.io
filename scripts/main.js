@@ -29,17 +29,16 @@ var crs = new L.Proj.CRS(
 //set additonal perimeters
 var settings = {
   tms: true,
-  minZoom: 3,
   maxZoom: 7,
   continuousWorld: true,
   attribution:
-    '<a href="http://www.linz.govt.nz">Data sourced from LINZ. CC-BY 4.0</a>' //Simple attribution for linz
+    '<a href="http://www.linz.govt.nz">Data sourced from LINZ. CC-BY 4.0</a>',
+    zIndex: 2
 };
 
 //set basemap url
-var topoMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings);
-
-var colourMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
+var topoMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings),
+	colourMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
 
 var baseMaps = {
 	"ColourMap": colourMap_urlTemplate
@@ -47,12 +46,12 @@ var baseMaps = {
 
 var overlayMaps = {
     "</span><span>Colour Base Map</span>": colourMap_urlTemplate,
-    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate
+    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
 };
 
 
 //set map and projection
-var map = new L.Map("map", {
+var map = new L.Map('map', {
     crs: crs,
     continuousWorld: true,
     worldCopyJump: false,
@@ -68,10 +67,14 @@ var map = new L.Map("map", {
 //build map
 //map.addLayer(topoMap);
 
-var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
+var zoomcontrol = new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
 
-map.addControl(new L.Control.Permalink({ text: 'Permalink', layers: layers }));
+var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
 
 //set opening view
 map.setView([-41.29, 175.4], 3);
+
+map.addControl(new L.Control.Permalink({ text: 'Permalink', layers: layers }));
+
+
 
