@@ -37,17 +37,17 @@ var settings = {
 };
 
 //set basemap url
-var topoMap_urlTemplate = l.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings);
+var topoMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings);
 
-var colourMap_urlTemplate = l.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
+var colourMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
 
-var baseMap = {
+var baseMaps = {
 	"ColourMap": colourMap_urlTemplate
 };
 
 var overlayMaps = {
     "</span><span>Colour Base Map</span>": colourMap_urlTemplate,
-    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
+    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate
 };
 
 
