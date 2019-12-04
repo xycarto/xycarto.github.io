@@ -45,7 +45,6 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "</span><span>Colour Base Map</span>": colourMap_urlTemplate,
     "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
 };
 
@@ -70,7 +69,7 @@ var map = new L.Map('map', {
 var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
 
 //set opening view
-map.setView([-41.29, 175.4], 3);
+map.setView([-40.9006, 174.8860], 3);
 
 
 
