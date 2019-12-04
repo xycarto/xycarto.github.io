@@ -70,7 +70,7 @@ var map = new L.Map('map', {
 var layers = L.control.layers(baseMaps).addTo(map);
 
 //set opening view
-map.setView([-40.9006, 173.5], 3);
+map.setView([-40.9006, 174.8860], 3);
 
 
 
