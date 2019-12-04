@@ -38,15 +38,16 @@ var settings = {
 
 //set basemap url
 var topoMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_topo_basemap/NZTM/{z}/{x}/{y}.png', settings),
-	colourMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
+	  colourMap_urlTemplate = L.tileLayer('https://s3-ap-southeast-2.amazonaws.com/basemaps.temp/nz_colour_basemap/NZTM/{z}/{x}/{y}.png', settings);
 
 var baseMaps = {
-	"ColourMap": colourMap_urlTemplate
-};
+  "TopoMap": topoMap_urlTemplate,
+  "ColourMap": colourMap_urlTemplate
+}
 
-var overlayMaps = {
-    "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
-};
+// var overlayMaps = {
+//     "</span><span>Topographic Base Map</span>": topoMap_urlTemplate,
+// };
 
 
 //set map and projection
@@ -57,7 +58,7 @@ var map = new L.Map('map', {
     zoomControl: false,
     maxZoom: 7,
     minZoom: 3,
-    layers: [colourMap_urlTemplate]
+    layers: [colourMap_urlTemplate, topoMap_urlTemplate]
 });
 
 //set
@@ -66,7 +67,7 @@ var map = new L.Map('map', {
 //build map
 //map.addLayer(topoMap);
 
-var layers = L.control.layers(baseMaps, overlayMaps, { "hideSingleBase": true }).addTo(map);
+var layers = L.control.layers(baseMaps).addTo(map);
 
 //set opening view
 map.setView([-40.9006, 174.8860], 3);
